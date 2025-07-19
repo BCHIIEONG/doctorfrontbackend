@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jida.tijian.mapper.CheckitemdetailedMapper" >
+  <resultMap id="BaseResultMap" type="com.jida.tijian.domain.Checkitemdetailed" >
+    <id column="cdId" property="cdId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="minrange" property="minrange" jdbcType="DOUBLE" />
+    <result column="maxrange" property="maxrange" jdbcType="DOUBLE" />
+    <result column="normalValue" property="normalValue" jdbcType="VARCHAR" />
+    <result column="normalValueString" property="normalValueString" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="ciId" property="ciId" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cdId, name, unit, minrange, maxrange, normalValue, normalValueString, type, ciId, 
+    remarks
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from checkitemdetailed
+    where cdId = #{cdId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from checkitemdetailed
+    where cdId = #{cdId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jida.tijian.domain.Checkitemdetailed" >
+    insert into checkitemdetailed (cdId, name, unit, 
+      minrange, maxrange, normalValue, 
+      normalValueString, type, ciId, 
+      remarks)
+    values (#{cdId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
+      #{minrange,jdbcType=DOUBLE}, #{maxrange,jdbcType=DOUBLE}, #{normalValue,jdbcType=VARCHAR}, 
+      #{normalValueString,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{ciId,jdbcType=INTEGER}, 
+      #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jida.tijian.domain.Checkitemdetailed" >
+    insert into checkitemdetailed
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cdId != null" >
+        cdId,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="minrange != null" >
+        minrange,
+      </if>
+      <if test="maxrange != null" >
+        maxrange,
+      </if>
+      <if test="normalValue != null" >
+        normalValue,
+      </if>
+      <if test="normalValueString != null" >
+        normalValueString,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="ciId != null" >
+        ciId,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cdId != null" >
+        #{cdId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="minrange != null" >
+        #{minrange,jdbcType=DOUBLE},
+      </if>
+      <if test="maxrange != null" >
+        #{maxrange,jdbcType=DOUBLE},
+      </if>
+      <if test="normalValue != null" >
+        #{normalValue,jdbcType=VARCHAR},
+      </if>
+      <if test="normalValueString != null" >
+        #{normalValueString,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="ciId != null" >
+        #{ciId,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jida.tijian.domain.Checkitemdetailed" >
+    update checkitemdetailed
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="minrange != null" >
+        minrange = #{minrange,jdbcType=DOUBLE},
+      </if>
+      <if test="maxrange != null" >
+        maxrange = #{maxrange,jdbcType=DOUBLE},
+      </if>
+      <if test="normalValue != null" >
+        normalValue = #{normalValue,jdbcType=VARCHAR},
+      </if>
+      <if test="normalValueString != null" >
+        normalValueString = #{normalValueString,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="ciId != null" >
+        ciId = #{ciId,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cdId = #{cdId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jida.tijian.domain.Checkitemdetailed" >
+    update checkitemdetailed
+    set name = #{name,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      minrange = #{minrange,jdbcType=DOUBLE},
+      maxrange = #{maxrange,jdbcType=DOUBLE},
+      normalValue = #{normalValue,jdbcType=VARCHAR},
+      normalValueString = #{normalValueString,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      ciId = #{ciId,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where cdId = #{cdId,jdbcType=INTEGER}
+  </update>
+</mapper>

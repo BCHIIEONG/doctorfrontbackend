@@ -55,6 +55,4 @@ public class ResponseObject<T> {
         this.data = data;
     }
 
-
-
 }

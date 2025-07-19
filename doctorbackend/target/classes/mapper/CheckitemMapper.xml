@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jida.tijian.mapper.CheckitemMapper" >
+  <resultMap id="BaseResultMap" type="com.jida.tijian.domain.Checkitem" >
+    <id column="ciId" property="ciId" jdbcType="INTEGER" />
+    <result column="ciName" property="ciName" jdbcType="VARCHAR" />
+    <result column="ciContent" property="ciContent" jdbcType="VARCHAR" />
+    <result column="meaning" property="meaning" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ciId, ciName, ciContent, meaning, remarks
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from checkitem
+    where ciId = #{ciId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from checkitem
+    where ciId = #{ciId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jida.tijian.domain.Checkitem" >
+    insert into checkitem (ciId, ciName, ciContent, 
+      meaning, remarks)
+    values (#{ciId,jdbcType=INTEGER}, #{ciName,jdbcType=VARCHAR}, #{ciContent,jdbcType=VARCHAR}, 
+      #{meaning,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jida.tijian.domain.Checkitem" >
+    insert into checkitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ciId != null" >
+        ciId,
+      </if>
+      <if test="ciName != null" >
+        ciName,
+      </if>
+      <if test="ciContent != null" >
+        ciContent,
+      </if>
+      <if test="meaning != null" >
+        meaning,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ciId != null" >
+        #{ciId,jdbcType=INTEGER},
+      </if>
+      <if test="ciName != null" >
+        #{ciName,jdbcType=VARCHAR},
+      </if>
+      <if test="ciContent != null" >
+        #{ciContent,jdbcType=VARCHAR},
+      </if>
+      <if test="meaning != null" >
+        #{meaning,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jida.tijian.domain.Checkitem" >
+    update checkitem
+    <set >
+      <if test="ciName != null" >
+        ciName = #{ciName,jdbcType=VARCHAR},
+      </if>
+      <if test="ciContent != null" >
+        ciContent = #{ciContent,jdbcType=VARCHAR},
+      </if>
+      <if test="meaning != null" >
+        meaning = #{meaning,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ciId = #{ciId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jida.tijian.domain.Checkitem" >
+    update checkitem
+    set ciName = #{ciName,jdbcType=VARCHAR},
+      ciContent = #{ciContent,jdbcType=VARCHAR},
+      meaning = #{meaning,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where ciId = #{ciId,jdbcType=INTEGER}
+  </update>
+</mapper>
