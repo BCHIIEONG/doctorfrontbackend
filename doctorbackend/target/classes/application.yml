@@ -1,0 +1,22 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    password: 123456
+    username: root
+    url: jdbc:mysql://localhost:3306/jida_tijian?characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  main:
+    allow-circular-references: true
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+
+logging:
+  level:
+    org.mybatis: DEBUG
+    # 或者针对具体的Mapper接口
+    com.jida.tijian.mapper: DEBUG
+

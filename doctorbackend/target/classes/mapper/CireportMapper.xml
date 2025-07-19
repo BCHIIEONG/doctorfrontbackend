@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jida.tijian.mapper.CireportMapper" >
+  <resultMap id="BaseResultMap" type="com.jida.tijian.domain.Cireport" >
+    <id column="cirId" property="cirId" jdbcType="INTEGER" />
+    <result column="ciId" property="ciId" jdbcType="INTEGER" />
+    <result column="ciName" property="ciName" jdbcType="VARCHAR" />
+    <result column="orderId" property="orderId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cirId, ciId, ciName, orderId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cireport
+    where cirId = #{cirId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cireport
+    where cirId = #{cirId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jida.tijian.domain.Cireport" >
+    insert into cireport (cirId, ciId, ciName, 
+      orderId)
+    values (#{cirId,jdbcType=INTEGER}, #{ciId,jdbcType=INTEGER}, #{ciName,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jida.tijian.domain.Cireport" >
+    insert into cireport
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cirId != null" >
+        cirId,
+      </if>
+      <if test="ciId != null" >
+        ciId,
+      </if>
+      <if test="ciName != null" >
+        ciName,
+      </if>
+      <if test="orderId != null" >
+        orderId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cirId != null" >
+        #{cirId,jdbcType=INTEGER},
+      </if>
+      <if test="ciId != null" >
+        #{ciId,jdbcType=INTEGER},
+      </if>
+      <if test="ciName != null" >
+        #{ciName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jida.tijian.domain.Cireport" >
+    update cireport
+    <set >
+      <if test="ciId != null" >
+        ciId = #{ciId,jdbcType=INTEGER},
+      </if>
+      <if test="ciName != null" >
+        ciName = #{ciName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        orderId = #{orderId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cirId = #{cirId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jida.tijian.domain.Cireport" >
+    update cireport
+    set ciId = #{ciId,jdbcType=INTEGER},
+      ciName = #{ciName,jdbcType=VARCHAR},
+      orderId = #{orderId,jdbcType=INTEGER}
+    where cirId = #{cirId,jdbcType=INTEGER}
+  </update>
+</mapper>
