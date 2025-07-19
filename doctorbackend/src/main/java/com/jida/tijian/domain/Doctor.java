@@ -1,6 +1,9 @@
 package com.jida.tijian.domain;
 
 public class Doctor {
+
+
+
     private Integer docId;
 
     private String docCode;

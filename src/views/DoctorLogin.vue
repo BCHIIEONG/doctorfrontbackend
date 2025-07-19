@@ -33,7 +33,7 @@ export default {
     const state = reactive({
       doctor: {
         docCode: "zzj",
-        password:"123"
+        password:"123456"
       },
     });
 

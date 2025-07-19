@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("com.jida.tijian.mapper")
-public class JidatijiandocterApplication {
+public class Jidadoctorcms718Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(JidatijiandocterApplication.class, args);
+        SpringApplication.run(Jidadoctorcms718Application.class, args);
     }
 
 }

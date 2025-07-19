@@ -114,10 +114,10 @@ where o.userId=u.userId
 			 o.smId=s.smId
 			 and
 			 o.hpId=h.hpId
-    <if test="userId != null" >
+    <if test="userId != null and userId!=''" >
       and u.userId=#{userId}
     </if>
-    <if test="realName != null" >
+    <if test="realName != null and realName!=''" >
       and u.realName=#{realName}
     </if>
     <if test="sex != null" >
@@ -126,7 +126,7 @@ where o.userId=u.userId
     <if test="smId != null" >
       and s.smId=#{smId,jdbcType=INTEGER}
     </if>
-    <if test="orderDate != null" >
+    <if test="orderDate != null and orderDate!=''" >
       and o.orderDate=#{orderDate,jdbcType=Date}
     </if>
     <if test="state != null" >

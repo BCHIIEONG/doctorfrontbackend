@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git reset:*)",
+      "Bash(java:*)",
+      "Bash(mvn clean:*)",
+      "Bash(echo $JAVA_HOME)",
+      "Bash(git add:*)"
+    ],
+    "deny": []
+  }
+}

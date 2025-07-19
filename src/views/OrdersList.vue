@@ -82,7 +82,7 @@
                 @click="handleClick(scope.row)"
                 type="text"
                 size="small"
-                >查看体检报告</el-button
+                >{{scope.row.state==1?"编辑体检报告":"查看体检报告"}}</el-button
               >
               
             </template>
@@ -92,7 +92,7 @@
         <el-pagination
   background
   layout="prev, pager, next,total"
-  :total="page.total" :page-size="2">
+  :total="page.total" :page-size="2"   @current-change="handleCurrentChange">
 </el-pagination>
       </el-main>
     </el-container>
@@ -103,19 +103,21 @@
 import { getSessionStorage } from "@/common";
 import { reactive, toRefs } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
 export default {
   setup() {
+
+    const router=useRouter();
+
     const state = reactive({
       doctor: getSessionStorage("jinandaxuedoctor"),
       users: {
         userId: "",
         realName: "",
-        sex: '0',
+        sex: "1",
         smId: "",
         orderDate: "",
-        state: "1",
-        pageSize:2,
-        pageNumber:1
+        state: "1"
 
       },
       setmealArr: [
@@ -126,15 +128,38 @@ export default {
       ordersList:[],
       page:{
         pageNumber:1,
-        pageSize:2,
+        pageSize:1,
         total:20
       }
     });
 
+   
+   
+   
+   
+  
+
     //初始化订单列表数据
     function loadOrdersList(){
+
+      console.log("users:"+state.users.userId+","+state.users.realName)
+      console.log("users:"+state.users.sex+","+state.users.smId)
+      console.log("users:"+state.users.state)
+
+
         axios
-        .post("/api/ordersList",{state:1,sex:0,pageNumber:1,pageSize:2})  //  localhost:8080/login/userId=?&password=?
+        .post("/api/ordersList",{
+          state:parseInt(state.users.state),
+          sex:parseInt(state.users.sex),
+          pageNumber:state.page.pageNumber,
+          pageSize:2,
+           userId:state.users.userId,
+          realName:state.users.realName,
+          smId:parseInt(state.users.smId),
+          orderDate:state.users.orderDate
+          
+
+        })  //  localhost:8080/login/userId=?&password=?
         .then((response) => {
           // console.log(response.data.data.total) //pageInfo
           state.ordersList=response.data.data.list;
@@ -151,9 +176,33 @@ export default {
 
     loadOrdersList();
 
+    function doSelect(){
+      loadOrdersList();
+    }
+
+   function handleCurrentChange(val) {
+       // console.log(`当前页: ${val}`);
+       state.page.pageNumber=val;
+        loadOrdersList();
+      }
+
+      //处理编辑体检报告事件或者是查看体检报告事件
+      function handleClick(data){
+          alert("orderId:"+data.orderId+","+data.smId)
+
+          //1.在跳转之前需要做一件事：针对未归档的订单要给他创建体检报告模板
+        //  axios异步请求：1.判断订单的状态，未归档才需要做这件事，做之前再看看有没有报告模板，有就不用重复创建了
+
+          //2.不管是编辑还是查看都要跳转到订单详情页面
+          router.push('/ordersContentView');
+      }
+
     return {
       ...toRefs(state),
-      loadOrdersList
+      loadOrdersList,
+      doSelect,
+      handleCurrentChange,
+      handleClick
     };
   },
 };
