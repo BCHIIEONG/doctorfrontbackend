@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jida.tijian.mapper.SetmealdetailedMapper" >
+  <resultMap id="BaseResultMap" type="com.jida.tijian.domain.Setmealdetailed" >
+    <id column="sdId" property="sdId" jdbcType="INTEGER" />
+    <result column="smId" property="smId" jdbcType="INTEGER" />
+    <result column="ciId" property="ciId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sdId, smId, ciId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from setmealdetailed
+    where sdId = #{sdId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from setmealdetailed
+    where sdId = #{sdId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jida.tijian.domain.Setmealdetailed" >
+    insert into setmealdetailed (sdId, smId, ciId
+      )
+    values (#{sdId,jdbcType=INTEGER}, #{smId,jdbcType=INTEGER}, #{ciId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jida.tijian.domain.Setmealdetailed" >
+    insert into setmealdetailed
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sdId != null" >
+        sdId,
+      </if>
+      <if test="smId != null" >
+        smId,
+      </if>
+      <if test="ciId != null" >
+        ciId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sdId != null" >
+        #{sdId,jdbcType=INTEGER},
+      </if>
+      <if test="smId != null" >
+        #{smId,jdbcType=INTEGER},
+      </if>
+      <if test="ciId != null" >
+        #{ciId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jida.tijian.domain.Setmealdetailed" >
+    update setmealdetailed
+    <set >
+      <if test="smId != null" >
+        smId = #{smId,jdbcType=INTEGER},
+      </if>
+      <if test="ciId != null" >
+        ciId = #{ciId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sdId = #{sdId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jida.tijian.domain.Setmealdetailed" >
+    update setmealdetailed
+    set smId = #{smId,jdbcType=INTEGER},
+      ciId = #{ciId,jdbcType=INTEGER}
+    where sdId = #{sdId,jdbcType=INTEGER}
+  </update>
+</mapper>

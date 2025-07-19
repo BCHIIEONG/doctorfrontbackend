@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jida.tijian.mapper.CidetailedreportMapper" >
+  <resultMap id="BaseResultMap" type="com.jida.tijian.domain.Cidetailedreport" >
+    <id column="cidrId" property="cidrId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="minrange" property="minrange" jdbcType="DOUBLE" />
+    <result column="maxrange" property="maxrange" jdbcType="DOUBLE" />
+    <result column="normalValue" property="normalValue" jdbcType="VARCHAR" />
+    <result column="normalValueString" property="normalValueString" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="isError" property="isError" jdbcType="INTEGER" />
+    <result column="ciId" property="ciId" jdbcType="INTEGER" />
+    <result column="orderId" property="orderId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cidrId, name, unit, minrange, maxrange, normalValue, normalValueString, type, value, 
+    isError, ciId, orderId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cidetailedreport
+    where cidrId = #{cidrId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cidetailedreport
+    where cidrId = #{cidrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jida.tijian.domain.Cidetailedreport" >
+    insert into cidetailedreport (cidrId, name, unit, 
+      minrange, maxrange, normalValue, 
+      normalValueString, type, value, 
+      isError, ciId, orderId
+      )
+    values (#{cidrId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
+      #{minrange,jdbcType=DOUBLE}, #{maxrange,jdbcType=DOUBLE}, #{normalValue,jdbcType=VARCHAR}, 
+      #{normalValueString,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}, 
+      #{isError,jdbcType=INTEGER}, #{ciId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jida.tijian.domain.Cidetailedreport" >
+    insert into cidetailedreport
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cidrId != null" >
+        cidrId,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="minrange != null" >
+        minrange,
+      </if>
+      <if test="maxrange != null" >
+        maxrange,
+      </if>
+      <if test="normalValue != null" >
+        normalValue,
+      </if>
+      <if test="normalValueString != null" >
+        normalValueString,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="isError != null" >
+        isError,
+      </if>
+      <if test="ciId != null" >
+        ciId,
+      </if>
+      <if test="orderId != null" >
+        orderId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cidrId != null" >
+        #{cidrId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="minrange != null" >
+        #{minrange,jdbcType=DOUBLE},
+      </if>
+      <if test="maxrange != null" >
+        #{maxrange,jdbcType=DOUBLE},
+      </if>
+      <if test="normalValue != null" >
+        #{normalValue,jdbcType=VARCHAR},
+      </if>
+      <if test="normalValueString != null" >
+        #{normalValueString,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="isError != null" >
+        #{isError,jdbcType=INTEGER},
+      </if>
+      <if test="ciId != null" >
+        #{ciId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jida.tijian.domain.Cidetailedreport" >
+    update cidetailedreport
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="minrange != null" >
+        minrange = #{minrange,jdbcType=DOUBLE},
+      </if>
+      <if test="maxrange != null" >
+        maxrange = #{maxrange,jdbcType=DOUBLE},
+      </if>
+      <if test="normalValue != null" >
+        normalValue = #{normalValue,jdbcType=VARCHAR},
+      </if>
+      <if test="normalValueString != null" >
+        normalValueString = #{normalValueString,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="isError != null" >
+        isError = #{isError,jdbcType=INTEGER},
+      </if>
+      <if test="ciId != null" >
+        ciId = #{ciId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        orderId = #{orderId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cidrId = #{cidrId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jida.tijian.domain.Cidetailedreport" >
+    update cidetailedreport
+    set name = #{name,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      minrange = #{minrange,jdbcType=DOUBLE},
+      maxrange = #{maxrange,jdbcType=DOUBLE},
+      normalValue = #{normalValue,jdbcType=VARCHAR},
+      normalValueString = #{normalValueString,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      value = #{value,jdbcType=VARCHAR},
+      isError = #{isError,jdbcType=INTEGER},
+      ciId = #{ciId,jdbcType=INTEGER},
+      orderId = #{orderId,jdbcType=INTEGER}
+    where cidrId = #{cidrId,jdbcType=INTEGER}
+  </update>
+</mapper>
