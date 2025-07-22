@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn:*)",
+      "Bash(taskkill:*)",
+      "Bash(wmic process where:*)",
+      "Bash(.mvnw.cmd spring-boot:run)",
+      "Bash(cmd.exe:*)",
+      "Bash(powershell.exe:*)",
+      "Bash(start cmd /k:*)"
+    ],
+    "deny": []
+  }
+}
